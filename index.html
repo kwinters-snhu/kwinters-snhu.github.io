@@ -23,6 +23,11 @@
     and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
     were added in later enhancements, as well, and learned how to use Docker to push the image to GCP.</p>
     <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/algorithms-enhancement">Algorithms Enhancement</a></h3>
+    <p>In this enhancement, I added a cache to store the barcodes of inbound messages, since many messages can be received with the same barcode.
+    I added two implementations, one with a binary search, and one with concurrent dictionary, and a unit test to measure the performance of both
+    and verify no issues with concurrent processing.  I also continued improving the code with consistent linting and quality approaches, added 
+    a bit more business logic, and started thinking through and preparing for some of the concurrency issues that may happen when more of the 
+    required logic is added.</p>
     <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/database-enhancement">Database Enhancement</a></h3>
 
     <h2>CS-499-Database (smat-database)</h2>
