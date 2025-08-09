@@ -12,7 +12,16 @@
     <h1>Artifacts and Enhancements</h1>
     <h2>CS-499-Worker (smat-integration)</h2>
     <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1">Initial Version</a></h3>
+    <p>This artifact is a worker service that receives AMQ messages, looks up the task barcode of the message, and either inserts a new or updates
+    the existing header and line objects from the message into a database, depending on if the barcode already exists or not.  I chose this artifact
+    because it has a lot of room for improvement, and because I have had a hand in guiding the overall project and infrastructure that it inhabits 
+    (it's part of a much larger system), so it demonstrates my ability to collaborate with a wide array of stakeholders and users, and design and
+    implement software solutions.  It was originally deployed to OpenShift as a POC and had a lot of messy code.  Throughout this course, I will be 
+    improving the code and preparing for a transition from OpenShift to Google Cloud Run.</p>
     <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement">Software Engineering Enhancement</a></h3>
+    <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
+    and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
+    were added in later enhancements, as well, and learned how to use Docker to push the image to GCP.</p>
     <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/algorithms-enhancement">Algorithms Enhancement</a></h3>
     <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/database-enhancement">Database Enhancement</a></h3>
 
