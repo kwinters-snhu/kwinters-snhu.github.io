@@ -4,21 +4,303 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNHU Portfolio</title>
+    <meta name="description" content="Capstone portfolio showcasing software engineering artifacts, enhancements, and outcomes." />
+    <meta name="color-scheme" content="light dark">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <style>
+    :root{
+      --bg: #0b0c10;
+      --surface: #111318;
+      --panel: #151922;
+      --text: #e9eef5;
+      --muted: #b7c2cf;
+      --brand: #6aa6ff;
+      --brand-2: #8bd7d2;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --radius: 16px;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #fafbfc;
+        --surface: #ffffff;
+        --panel: #f3f5f8;
+        --text: #0f172a;
+        --muted: #475569;
+        --brand: #2f6af7;
+        --brand-2: #10b981;
+        --shadow: 0 10px 25px rgba(2,6,23,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background:linear-gradient(180deg,var(--bg),var(--surface));
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1100px, 92vw); margin-inline:auto}
+
+    /* Header */
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;padding:.5rem .75rem;background:var(--panel);border-radius:.5rem;box-shadow:var(--shadow)}
+
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(150%) blur(6px);
+      background:color-mix(in oklab, var(--surface) 70%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--panel) 70%, transparent);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem; font-weight:700; letter-spacing:.2px}
+    .brand .dot{width:.85rem;height:.85rem;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2))}
+    .nav a.btn{padding:.55rem .9rem;border-radius:.65rem;background:var(--panel);border:1px solid color-mix(in oklab, var(--panel) 85%, transparent);text-decoration:none}
+    .nav .links{display:flex; gap:.75rem; flex-wrap:wrap}
+
+    /* Hero */
+    .hero{padding:clamp(2rem, 4vw, 4rem) 0 1rem}
+    .hero-inner{display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center}
+    .card{background:var(--panel); border:1px solid color-mix(in oklab, var(--panel) 85%, transparent); border-radius:var(--radius); padding:1.25rem; box-shadow:var(--shadow)}
+    .eyebrow{display:inline-flex; gap:.5rem; align-items:center; font-size:.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:.12em}
+    .title{font-size:clamp(1.8rem, 3.2vw, 2.6rem); line-height:1.15; margin:.35rem 0 0}
+    .subtitle{color:var(--muted); margin:.5rem 0 0}
+    .meta{display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin-top:1rem; color:var(--muted); font-size:.95rem}
+    .badge{display:inline-flex; align-items:center; gap:.4rem; padding:.25rem .55rem; border-radius:999px; background:color-mix(in oklab, var(--panel) 75%, transparent); border:1px solid color-mix(in oklab, var(--panel) 85%, transparent)}
+
+    /* Sections */
+    section{scroll-margin-top:80px}
+    .section-hdr{display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin:2.5rem 0 1.25rem}
+    .section-hdr h2{margin:0; font-size:clamp(1.4rem,2.2vw,1.8rem)}
+    .section-hdr p{margin:0; color:var(--muted)}
+
+    /* Artifacts grid */
+    .grid{display:grid; gap:1rem; grid-template-columns:repeat(12, 1fr)}
+    .artifact{grid-column:span 12; display:grid; gap:1rem; grid-template-columns: 1fr 1.6fr; align-items:stretch}
+    .artifact .cover{border-radius:var(--radius); aspect-ratio:16/9; background:
+      linear-gradient(135deg, color-mix(in oklab, var(--brand) 25%, transparent), color-mix(in oklab, var(--brand-2) 25%, transparent)),
+      repeating-linear-gradient(45deg, color-mix(in oklab, var(--panel) 85%, transparent) 0 2px, transparent 2px 6px);
+      border:1px solid color-mix(in oklab, var(--panel) 85%, transparent);
+    }
+    .artifact .body{display:grid; gap:1rem}
+    .artifact h3{margin:.25rem 0 0}
+    .kvs{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:.5rem}
+    .kvs a{display:block; text-align:center; padding:.6rem .75rem; border:1px solid color-mix(in oklab, var(--panel) 85%, transparent); border-radius:.65rem; background:var(--surface); text-decoration:none; font-weight:600}
+    .pill{display:inline-block; font-size:.85rem; padding:.25rem .6rem; border-radius:999px; background:color-mix(in oklab, var(--panel) 75%, transparent); border:1px solid color-mix(in oklab, var(--panel) 85%, transparent); color:var(--muted)}
+
+    details.discloser{border-radius:.75rem; border:1px solid color-mix(in oklab, var(--panel) 85%, transparent); background:var(--surface); padding:.75rem 1rem}
+    details.discloser summary{cursor:pointer; font-weight:600}
+    .discloser .content{margin-top:.5rem; color:var(--text)}
+    .discloser .content p{margin:.5rem 0}
+    .list{margin:.5rem 0 0; padding-left:1.1rem}
+
+    /* Outcomes */
+    .outcomes{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .outcome-card{grid-column:span 12; background:var(--panel); border:1px solid color-mix(in oklab, var(--panel) 85%, transparent); border-radius:var(--radius); padding:1rem}
+    .outcome-card h4{margin:.2rem 0 .4rem}
+
+    /* Footer */
+    footer{margin:3rem 0 4rem; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr}
+      .artifact{grid-template-columns:1fr}
+      .kvs{grid-template-columns:1fr}
+    }
+
+    /* Print tweaks */
+    @media print{
+      header, .nav, .kvs a{box-shadow:none}
+      .nav a.btn{border:1px solid #999}
+      a[href^="http"]::after{content:" (" attr(href) ")"; font-size:.85em}
+      body{background:#fff}
+    }
+</style>
+
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>*</span>
+      </div>
+      <div class="links">
+        <a class="btn" href="#artifacts">Artifacts</a>
+        <a class="btn" href="#outcomes">Outcomes</a>
+        <a class="btn" href="#about">About</a>
+        <!--a class="btn" href="RESUME_LINK" target="_blank" rel="noopener">Résumé</a-->
+        <!--a class="btn" href="mailto:you@example.com">Contact</a-->
+      </div>
+    </div>
+    </header>
+    <main id="main" class="container">
+        <!-- HERO / INTRO -->
+        <section class="hero" id="intro">
+          <div class="hero-inner">
+            <div class="card">
+              <span class="eyebrow">Professional Portfolio</span>
+              <h1 class="title">Hi, a <span class="pill">Software Engineer</span> focused on building reliable, testable systems.</h1>
+              <p class="subtitle">This portfolio presents my capstone project and related artifacts. Each section links to source code and demo video, explains enhancements, provides usage/testing instructions, and maps improvements to course outcomes.</p>
+              <div class="meta">
+                <span class="badge" title="Primary languages">C# • SQL</span>
+                <span class="badge" title="Frameworks">.NET 8 • PostgreSQL</span>
+                <span class="badge" title="DevOps">Docker • Kubernetes • Azure • GCP</span>
+              </div>
+            </div>
+            <div class="card" aria-label="Quick facts">
+              <strong>Quick Links</strong>
+              <ul class="list">
+                <li><a href="#artifacts">Jump to Artifacts</a></li>
+                <li><a href="#outcomes">Course Outcomes Mapping</a></li>
+                <li><a href="#about">About Me</a></li>
+              </ul>
+              <p class="subtitle" style="margin-top:.75rem">Last updated: <span id="lastUpdated"></span></p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- ARTIFACT -->
+        <section id="artifacts">
+          <div class="section-hdr">
+            <h2>Capstone Artifact</h2>
+            <p>This artifact is a worker service that receives AMQ messages, looks up the task barcode of the message, and either inserts a new or updates
+                the existing header and line objects from the message into a database, depending on if the barcode already exists or not.  I chose this artifact
+                because it has a lot of room for improvement, and because I have had a hand in guiding the overall project and infrastructure that it inhabits 
+                (it's part of a much larger system), so it demonstrates my ability to collaborate with a wide array of stakeholders and users, and design and
+                implement software solutions.  It was originally deployed to OpenShift as a POC and had a lot of messy code.  Throughout this course, I will be 
+                improving the code and preparing for a transition from OpenShift to Google Cloud Run.</p>
+          </div>
+
+          <!--SWE Enhancement-->  
+          <article class="artifact card" aria-labelledby="a1-title">
+            <div class="cover" aria-hidden="true"></div>
+            <div class="body">
+              <div>
+                <h3 id="a1-title">SWE Enhancement - smat-integration Worker Service</h3>
+                <div class="kvs" aria-label="Key links">
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
+                  <a href="TEST_LINK" target="_blank" rel="noopener" aria-label="Watch demo video">How to Test</a>
+                  <a href="VIDEO_LINK" target="_blank" rel="noopener" aria-label="Open live demo or release">Video Demo</a>
+                </div>
+              </div>
+        
+              <details class="discloser" open>
+                <summary>Description</summary>
+                <div class="content">
+                  <p></p>
+                  <ul class="list">
+                    <li>C# / .NET 8 / AMQPNetLite</li>
+                    <li>High-level architecture</li>
+                    <li>Notable constraints or trade‑offs</li>
+                  </ul>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>Enhancements Made</summary>
+                <div class="content">
+                  <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
+                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
+                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP..</p>
+                  <ul class="list">
+                    <li>Performance: e.g., added binary search cache to reduce lookup time</li>
+                    <li>Reliability: e.g., idempotent message handling + advisory locks</li>
+                    <li>Security: e.g., parameterized queries + least privilege</li>
+                    <li>DevOps: e.g., CI pipeline with unit/integration test stages</li>
+                  </ul>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>How to Use & Test</summary>
+                <div class="content">
+                  <p>Clear, reproducible instructions for reviewers.</p>
+                  <ol class="list">
+                    <li>Clone repo and set environment variables (see README).</li>
+                    <li>Run database migrations; seed sample data.</li>
+                    <li>Start services locally (e.g., <code>docker compose up</code>).</li>
+                    <li>Open <code>http://localhost:PORT</code>; sign in with test credentials.</li>
+                    <li>Run tests: <code>dotnet test</code> / <code>npm test</code> (include coverage thresholds).</li>
+                  </ol>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>Skills & Course Outcomes Demonstrated</summary>
+                <div class="content">
+                  <p>Map enhancements to learning outcomes and skills.</p>
+                  <ul class="list">
+                    <li><strong>Software Engineering:</strong> modular architecture, SOLID principles, thorough unit tests.</li>
+                    <li><strong>Algorithms/DS:</strong> time/space analysis, O(log n) lookups via binary search, concurrency safety.</li>
+                    <li><strong>Databases:</strong> normalized schema, transactions, <code>INSERT ... ON CONFLICT</code> patterns.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+        
+        </section>
+        
+        <!-- OUTCOMES MAPPING -->
+        <section id="outcomes">
+          <div class="section-hdr">
+            <h2>Course Outcomes Mapping</h2>
+            <p>How the work above aligns to program and course outcomes.</p>
+          </div>
+          <div class="outcomes">
+            <div class="outcome-card">
+              <h4>Outcome A — Software Engineering Practice</h4>
+              <p>Evidence: Artifact 1 (testing & CI), Artifact 2 (design patterns), Artifact 3 (code reviews).</p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome B — Databases</h4>
+              <p>Evidence: Artifact 1 (schema + migrations), Artifact 2 (transactional messaging), Artifact 4 (query optimization).</p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome C — Data Structures & Algorithms</h4>
+              <p>Evidence: Artifact 2 (binary search cache), Artifact 5 (graph traversal), performance benchmarking.</p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome D — Security & Ethics</h4>
+              <p>Evidence: secret management, least-privilege roles, secure coding practices.</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- ABOUT -->
+        <section id="about">
+          <div class="section-hdr">
+            <h2>About Me</h2>
+            <p>A brief professional bio and contact information.</p>
+          </div>
+          <div class="card">
+            <p>Replace this with a short bio. Focus on what you build, how you work, and your interests. Add a link to your résumé, LinkedIn, and GitHub.</p>
+            <ul class="list">
+              <li>Location: City, State</li>
+              <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+              <li>GitHub: <a href="https://github.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></li>
+              <li>LinkedIn: <a href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">/in/your-handle</a></li>
+            </ul>
+          </div>
+        </section>
+        
+        <footer>
+          <hr style="border:none; height:1px; background: color-mix(in oklab, var(--panel) 85%, transparent);">
+          <p>© <span id="year"></span> YOUR NAME. Built for capstone review. Hosted on GitHub Pages.</p>
+        </footer>
+    </main>
+
     <h1><a href="https://snhu-my.sharepoint.com/:f:/g/personal/kira_winters_snhu_edu/Epr9Ja00gmNJoukzkblj6CEBCDNWnZJ9zLHGABE2Nst3xA?email=f.bermudez%40snhu.edu&e=Nrwkwh">Code Review</a></h1>
     <p>Ctrl+Click to view.</p>
 
-    <h1>Artifacts and Enhancements</h1>
-    <h2>CS-499-Worker (smat-integration)</h2>
-    <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1">Initial Version</a></h3>
-    <p>This artifact is a worker service that receives AMQ messages, looks up the task barcode of the message, and either inserts a new or updates
-    the existing header and line objects from the message into a database, depending on if the barcode already exists or not.  I chose this artifact
-    because it has a lot of room for improvement, and because I have had a hand in guiding the overall project and infrastructure that it inhabits 
-    (it's part of a much larger system), so it demonstrates my ability to collaborate with a wide array of stakeholders and users, and design and
-    implement software solutions.  It was originally deployed to OpenShift as a POC and had a lot of messy code.  Throughout this course, I will be 
-    improving the code and preparing for a transition from OpenShift to Google Cloud Run.</p>
-    <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement">Software Engineering Enhancement</a></h3>
     <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
     and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
     were added in later enhancements, as well, and learned how to use Docker to push the image to GCP.</p>
