@@ -169,13 +169,26 @@
         <!-- ARTIFACT -->
         <section id="artifacts">
           <div class="section-hdr">
-            <h2>Capstone Artifact</h2>
-            <p>This artifact is a worker service that receives AMQ messages, looks up the task barcode of the message, and either inserts a new or updates
-                the existing header and line objects from the message into a database, depending on if the barcode already exists or not.  I chose this artifact
-                because it has a lot of room for improvement, and because I have had a hand in guiding the overall project and infrastructure that it inhabits 
-                (it's part of a much larger system), so it demonstrates my ability to collaborate with a wide array of stakeholders and users, and design and
-                implement software solutions.  It was originally deployed to OpenShift as a POC and had a lot of messy code.  Throughout this course, I will be 
-                improving the code and preparing for a transition from OpenShift to Google Cloud Run.</p>
+            <h2>Capstone Artifact: CS-499-worker</h2>
+            <h3>Project Description</h3>
+              <p>This artifact is a .NET 8.0 worker service that uses AMQPNetLite to subscribe to multiple AMQ topics from a message broker.  
+                It processes the messages, extracts a few entities, and adds them to tables.  
+                It also checks the message barcode in the database and inserts the entities with "New" status if not found, or "Updated" if found.</p>
+            <h3>Justification for Rewrite - Software Engineering</h3>
+            <p>While the AMQP Subscription portion of the code is new, much of the database and business logic code was hastily pulled and adapted from a legacy system.  
+                The AMQP was all that I really needed to test as part of the effort to build out the new infrastructure, and I planned to refactor and clean up the rest 
+                once that concept was proven.  This made it a great candidate for the Software Engineering enhancement.</p>
+            <h3>Justification for Rewrite - Data Structures and Algorithms</h3>
+            <p>The legacy system that some of the business logic and database code was pulled from has a history of concurrency issues and dropped messages.  For
+                that reason, I wanted to pay extra close attention to how data is being accessed, stored, and updated or deleted.  The barcode lookup and lock, in 
+                particular, caused issues when multiple messages were received at the same time and processed at the same time on multiple threads or servers.  The 
+                need to quickly search for the barcode and handle it concurrently made it a good candiate for the Data Structures and Algorithms enhancement.</p>
+            <h3>Justification for Rewrite - Database</h3>
+            <p>The service is part of a much larger ecosystem of microservices at my company.  It was created a few months ago both for business requirements
+                and as a POC for adoption of new pipeline systems, and I worked with various teams to implement and deploy it via enterprise pipelines using
+                Azure DevOps, Openshift, and ArgoCD.  However, the enterprise is now switching to GCP, Cloud Run, and AlloyDB.  For that reason, the application 
+                must be tweaked for for those platforms, and the database must be rewritten from SQL Server to AlloyDB/PostgreSQL.  That made it a perfect candiate
+                for the Database enhancement.</p>
           </div>
 
           <!--SWE Enhancement-->  
