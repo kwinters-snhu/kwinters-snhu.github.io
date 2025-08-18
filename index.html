@@ -135,8 +135,6 @@
         <a class="btn" href="#artifacts">Artifacts</a>
         <a class="btn" href="#outcomes">Outcomes</a>
         <a class="btn" href="#about">About</a>
-        <!--a class="btn" href="RESUME_LINK" target="_blank" rel="noopener">Résumé</a-->
-        <!--a class="btn" href="mailto:you@example.com">Contact</a-->
       </div>
     </div>
     </header>
@@ -177,7 +175,7 @@
 
           <!--SWE Enhancement-->  
           <article class="artifact card" aria-labelledby="a1-title">
-            <div class="cover" aria-hidden="true"><img src="https://github.com/kwinters-snhu/kwinters-snhu.github.io/blob/main/images/HLA_v1.PNG" width="100%" alt="SMAT Original HLA"></div>
+            <div class="cover" aria-hidden="true"><img src="https://github.com/kwinters-snhu/kwinters-snhu.github.io/blob/main/images/HLA_v1.PNG" width="100%" alt="Original HLA (names removed)"></div>
             <div class="body">
               <div>
                 <h3 id="a1-title">SWE Enhancement</h3>
@@ -196,8 +194,7 @@
                 once that concept was proven.  This made it a great candidate for the Software Engineering enhancement.</p>
                   <ul class="list">
                     <li>C# / .NET 8 / AMQPNetLite</li>
-                    <li>High-level architecture</li>
-                    <li>Notable constraints or trade‑offs</li>
+                    <li>Image: Original HLA (names removed)</li>
                   </ul>
                 </div>
               </details>
@@ -207,12 +204,22 @@
                 <div class="content">
                   <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
                       and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
-                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP..</p>
+                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP.  Infrastructure changes will be attempted, 
+                      but due to organizational processes, this effort will likely be ongoing after the class and may not be included in this iteration.</p>
+                  <h5>Code Enhancements</h5>
                   <ul class="list">
-                    <li>Performance: e.g., added binary search cache to reduce lookup time</li>
-                    <li>Reliability: e.g., idempotent message handling + advisory locks</li>
-                    <li>Security: e.g., parameterized queries + least privilege</li>
-                    <li>DevOps: e.g., CI pipeline with unit/integration test stages</li>
+                    <li>Enhancement 1: Add logging and error handling example.</li>
+                    <li>Enhancement 2: Begin adding missing business logic, unit tests, and metrics.</li>
+                    <li>Enhancement 3: Refactor code into clean, reusable, and testable components.  Rename items per organization standards.</li>
+                    <li>Enhancement 4: Add validation of inbound messages to improve security, and mitigate security issues if found in scan.</li>
+                    <li>Enhancement 5: Work with AMQ Team to determine how to reprocess in the event of message loss.  (Found that they do not reprocess.  The vendor resends the message.)</li>
+                  </ul>
+                  <h5>Infrastructure (WIP/Nice to Have)</h5>
+                  <ul class="list">
+                    <li>Move application from Openshift to GCP/Cloud Run.</li>
+                    <li>Update pipelines to publish to the new environments.</li>
+                    <li>Update logging/monitoring/alerting for GCP.</li>
+                    <li>Configure environment secrets, scaling/load balancing, and networking.</li>
                   </ul>
                 </div>
               </details>
@@ -220,13 +227,13 @@
               <details class="discloser">
                 <summary>How to Use & Test</summary>
                 <div class="content">
-                  <p>Clear, reproducible instructions for reviewers.</p>
+                  <p>Due to the organization's network security and policies preventing use of AMQ brokers locally, only unit tests 
+                    may be used for this presentation.  See the video for additional context.</p>
                   <ol class="list">
-                    <li>Clone repo and set environment variables (see README).</li>
-                    <li>Run database migrations; seed sample data.</li>
-                    <li>Start services locally (e.g., <code>docker compose up</code>).</li>
-                    <li>Open <code>http://localhost:PORT</code>; sign in with test credentials.</li>
-                    <li>Run tests: <code>dotnet test</code> / <code>npm test</code> (include coverage thresholds).</li>
+                    <li>Clone the repository.  <code>git clone https://github.com/kwinters-snhu/CS-499-worker.git</code></li>
+                    <li>Open in Visual Studio.  Tests and test data are in the smat-integration-unittests.Test project.</li>
+                    <li>Checkout swe-enhancement or later branch.  <code>git checkout swe-enhancement</code></li>
+                    <li>Navigate to View > Test Explorer, and click on the green arrow to run the tests and view results.</li>
                   </ol>
                 </div>
               </details>
@@ -236,9 +243,20 @@
                 <div class="content">
                   <p>Map enhancements to learning outcomes and skills.</p>
                   <ul class="list">
-                    <li><strong>Software Engineering:</strong> modular architecture, SOLID principles, thorough unit tests.</li>
-                    <li><strong>Algorithms/DS:</strong> time/space analysis, O(log n) lookups via binary search, concurrency safety.</li>
-                    <li><strong>Databases:</strong> normalized schema, transactions, <code>INSERT ... ON CONFLICT</code> patterns.</li>
+                    <li><strong>Collaboration:</strong> This enhancement required collaboration with the AMQ Broker team to provide schemas, 
+                    integration tests, and planning for message handling and protocol for issues.  The ongoing design and implementation 
+                    of the application and infrastructure required collaboration with our architects, enterprise engineering team, and 
+                    GCP sandbox/terraform repo management teams.</li>
+                    <li><strong>Communication:</strong> I created the HLA and additional documentation to serve as foundations for discussion 
+                    and planning with the team.  I meticulously documented all of our processes, discussions, architecture, and how-tos in a 
+                    shared OneNote so that anyone who does not have experience can take over at any time.  I also improved commenting and documentation 
+                    within the code itself.</li>
+                    <li><strong>Innovation:</strong> Our team does not have many examples of .NET applications or AlloyDB in GCP/Cloud Run.  It 
+                    has been a pleasure to work with our architects, engineers, and other teams also learning about this technology as we create and 
+                    share new solutions.</li>
+                    <li><strong>Security Mindset:</strong> Adding schema validation for the XML messages, and additional business logic validation 
+                    improved security significantly, as input/output validation is one of the most important foundational steps to prevent unauthorized 
+                    changes to data.  Additional updates are made in later enhancements, and will continue to be made as our scan reports become available.</li>
                   </ul>
                 </div>
               </details>
@@ -307,9 +325,11 @@
                 <div class="content">
                   <p>Map enhancements to learning outcomes and skills.</p>
                   <ul class="list">
-                    <li><strong>Software Engineering:</strong> modular architecture, SOLID principles, thorough unit tests.</li>
-                    <li><strong>Algorithms/DS:</strong> time/space analysis, O(log n) lookups via binary search, concurrency safety.</li>
-                    <li><strong>Databases:</strong> normalized schema, transactions, <code>INSERT ... ON CONFLICT</code> patterns.</li>
+                    <li><strong>Collaboration:</strong> Description</li>
+                    <li><strong>Communication:</strong> Description</li>
+                    <li><strong>Design and Algorithms:</strong> Description</li>
+                    <li><strong>Innovation:</strong> Description</li>
+                    <li><strong>Security Mindset:</strong> Description</li>
                   </ul>
                 </div>
               </details>
@@ -379,9 +399,11 @@
                 <div class="content">
                   <p>Map enhancements to learning outcomes and skills.</p>
                   <ul class="list">
-                    <li><strong>Software Engineering:</strong> modular architecture, SOLID principles, thorough unit tests.</li>
-                    <li><strong>Algorithms/DS:</strong> time/space analysis, O(log n) lookups via binary search, concurrency safety.</li>
-                    <li><strong>Databases:</strong> normalized schema, transactions, <code>INSERT ... ON CONFLICT</code> patterns.</li>
+                    <li><strong>Collaboration:</strong> Description</li>
+                    <li><strong>Communication:</strong> Description</li>
+                    <li><strong>Design and Algorithms:</strong> Description</li>
+                    <li><strong>Innovation:</strong> Description</li>
+                    <li><strong>Security Mindset:</strong> Description</li>
                   </ul>
                 </div>
               </details>
