@@ -170,25 +170,9 @@
         <section id="artifacts">
           <div class="section-hdr">
             <h2>Capstone Artifact: CS-499-worker</h2>
-            <h3>Project Description</h3>
               <p>This artifact is a .NET 8.0 worker service that uses AMQPNetLite to subscribe to multiple AMQ topics from a message broker.  
                 It processes the messages, extracts a few entities, and adds them to tables.  
                 It also checks the message barcode in the database and inserts the entities with "New" status if not found, or "Updated" if found.</p>
-            <h3>Justification for Rewrite - Software Engineering</h3>
-            <p>While the AMQP Subscription portion of the code is new, much of the database and business logic code was hastily pulled and adapted from a legacy system.  
-                The AMQP was all that I really needed to test as part of the effort to build out the new infrastructure, and I planned to refactor and clean up the rest 
-                once that concept was proven.  This made it a great candidate for the Software Engineering enhancement.</p>
-            <h3>Justification for Rewrite - Data Structures and Algorithms</h3>
-            <p>The legacy system that some of the business logic and database code was pulled from has a history of concurrency issues and dropped messages.  For
-                that reason, I wanted to pay extra close attention to how data is being accessed, stored, and updated or deleted.  The barcode lookup and lock, in 
-                particular, caused issues when multiple messages were received at the same time and processed at the same time on multiple threads or servers.  The 
-                need to quickly search for the barcode and handle it concurrently made it a good candiate for the Data Structures and Algorithms enhancement.</p>
-            <h3>Justification for Rewrite - Database</h3>
-            <p>The service is part of a much larger ecosystem of microservices at my company.  It was created a few months ago both for business requirements
-                and as a POC for adoption of new pipeline systems, and I worked with various teams to implement and deploy it via enterprise pipelines using
-                Azure DevOps, Openshift, and ArgoCD.  However, the enterprise is now switching to GCP, Cloud Run, and AlloyDB.  For that reason, the application 
-                must be tweaked for for those platforms, and the database must be rewritten from SQL Server to AlloyDB/PostgreSQL.  That made it a perfect candiate
-                for the Database enhancement.</p>
           </div>
 
           <!--SWE Enhancement-->  
@@ -196,7 +180,7 @@
             <div class="cover" aria-hidden="true"></div>
             <div class="body">
               <div>
-                <h3 id="a1-title">SWE Enhancement - smat-integration Worker Service</h3>
+                <h3 id="a1-title">SWE Enhancement</h3>
                 <div class="kvs" aria-label="Key links">
                   <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
                   <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
@@ -206,9 +190,11 @@
               </div>
         
               <details class="discloser" open>
-                <summary>Description</summary>
+                <summary>Justification</summary>
                 <div class="content">
-                  <p></p>
+                  <p>While the AMQP Subscription portion of the code is new, much of the database and business logic code was hastily pulled and adapted from a legacy system.  
+                The AMQP was all that I really needed to test as part of the effort to build out the new infrastructure, and I planned to refactor and clean up the rest 
+                once that concept was proven.  This made it a great candidate for the Software Engineering enhancement.</p>
                   <ul class="list">
                     <li>C# / .NET 8 / AMQPNetLite</li>
                     <li>High-level architecture</li>
@@ -259,7 +245,151 @@
               </details>
             </div>
           </article>
+
+          <!--Data Structures and Algorithms Enhancement-->  
+          <article class="artifact card" aria-labelledby="a1-title">
+            <div class="cover" aria-hidden="true"></div>
+            <div class="body">
+              <div>
+                <h3 id="a1-title">Data Structures and Algorithms Enhancement</h3>
+                <div class="kvs" aria-label="Key links">
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
+                  <a href="TEST_LINK" target="_blank" rel="noopener" aria-label="Watch demo video">How to Test</a>
+                  <a href="VIDEO_LINK" target="_blank" rel="noopener" aria-label="Open live demo or release">Video Demo</a>
+                </div>
+              </div>
         
+              <details class="discloser" open>
+                <summary>Justification</summary>
+                <div class="content">
+                  <p>The legacy system that some of the business logic and database code was pulled from has a history of concurrency issues and dropped messages.  For
+                that reason, I wanted to pay extra close attention to how data is being accessed, stored, and updated or deleted.  The barcode lookup and lock, in 
+                particular, caused issues when multiple messages were received at the same time and processed at the same time on multiple threads or servers.  The 
+                need to quickly search for the barcode and handle it concurrently made it a good candiate for the Data Structures and Algorithms enhancement.</p>
+                  <ul class="list">
+                    <li>C# / .NET 8 / AMQPNetLite</li>
+                    <li>High-level architecture</li>
+                    <li>Notable constraints or trade‑offs</li>
+                  </ul>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>Enhancements Made</summary>
+                <div class="content">
+                  <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
+                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
+                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP..</p>
+                  <ul class="list">
+                    <li>Performance: e.g., added binary search cache to reduce lookup time</li>
+                    <li>Reliability: e.g., idempotent message handling + advisory locks</li>
+                    <li>Security: e.g., parameterized queries + least privilege</li>
+                    <li>DevOps: e.g., CI pipeline with unit/integration test stages</li>
+                  </ul>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>How to Use & Test</summary>
+                <div class="content">
+                  <p>Clear, reproducible instructions for reviewers.</p>
+                  <ol class="list">
+                    <li>Clone repo and set environment variables (see README).</li>
+                    <li>Run database migrations; seed sample data.</li>
+                    <li>Start services locally (e.g., <code>docker compose up</code>).</li>
+                    <li>Open <code>http://localhost:PORT</code>; sign in with test credentials.</li>
+                    <li>Run tests: <code>dotnet test</code> / <code>npm test</code> (include coverage thresholds).</li>
+                  </ol>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>Skills & Course Outcomes Demonstrated</summary>
+                <div class="content">
+                  <p>Map enhancements to learning outcomes and skills.</p>
+                  <ul class="list">
+                    <li><strong>Software Engineering:</strong> modular architecture, SOLID principles, thorough unit tests.</li>
+                    <li><strong>Algorithms/DS:</strong> time/space analysis, O(log n) lookups via binary search, concurrency safety.</li>
+                    <li><strong>Databases:</strong> normalized schema, transactions, <code>INSERT ... ON CONFLICT</code> patterns.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+            
+          <!--Database Enhancement-->  
+          <article class="artifact card" aria-labelledby="a1-title">
+            <div class="cover" aria-hidden="true"></div>
+            <div class="body">
+              <div>
+                <h3 id="a1-title">Data Structures and Algorithms Enhancement</h3>
+                <div class="kvs" aria-label="Key links">
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
+                  <a href="TEST_LINK" target="_blank" rel="noopener" aria-label="Watch demo video">How to Test</a>
+                  <a href="VIDEO_LINK" target="_blank" rel="noopener" aria-label="Open live demo or release">Video Demo</a>
+                </div>
+              </div>
+        
+              <details class="discloser" open>
+                <summary>Justification</summary>
+                <div class="content">
+                  <p>The service is part of a much larger ecosystem of microservices at my company.  It was created a few months ago both for business requirements
+                and as a POC for adoption of new pipeline systems, and I worked with various teams to implement and deploy it via enterprise pipelines using
+                Azure DevOps, Openshift, and ArgoCD.  However, the enterprise is now switching to GCP, Cloud Run, and AlloyDB.  For that reason, the application 
+                must be tweaked for for those platforms, and the database must be rewritten from SQL Server to AlloyDB/PostgreSQL.  That made it a perfect candiate
+                for the Database enhancement.</p>
+                  <ul class="list">
+                    <li>C# / .NET 8 / AMQPNetLite</li>
+                    <li>High-level architecture</li>
+                    <li>Notable constraints or trade‑offs</li>
+                  </ul>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>Enhancements Made</summary>
+                <div class="content">
+                  <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
+                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
+                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP..</p>
+                  <ul class="list">
+                    <li>Performance: e.g., added binary search cache to reduce lookup time</li>
+                    <li>Reliability: e.g., idempotent message handling + advisory locks</li>
+                    <li>Security: e.g., parameterized queries + least privilege</li>
+                    <li>DevOps: e.g., CI pipeline with unit/integration test stages</li>
+                  </ul>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>How to Use & Test</summary>
+                <div class="content">
+                  <p>Clear, reproducible instructions for reviewers.</p>
+                  <ol class="list">
+                    <li>Clone repo and set environment variables (see README).</li>
+                    <li>Run database migrations; seed sample data.</li>
+                    <li>Start services locally (e.g., <code>docker compose up</code>).</li>
+                    <li>Open <code>http://localhost:PORT</code>; sign in with test credentials.</li>
+                    <li>Run tests: <code>dotnet test</code> / <code>npm test</code> (include coverage thresholds).</li>
+                  </ol>
+                </div>
+              </details>
+        
+              <details class="discloser">
+                <summary>Skills & Course Outcomes Demonstrated</summary>
+                <div class="content">
+                  <p>Map enhancements to learning outcomes and skills.</p>
+                  <ul class="list">
+                    <li><strong>Software Engineering:</strong> modular architecture, SOLID principles, thorough unit tests.</li>
+                    <li><strong>Algorithms/DS:</strong> time/space analysis, O(log n) lookups via binary search, concurrency safety.</li>
+                    <li><strong>Databases:</strong> normalized schema, transactions, <code>INSERT ... ON CONFLICT</code> patterns.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
         </section>
         
         <!-- OUTCOMES MAPPING -->
