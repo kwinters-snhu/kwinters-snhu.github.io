@@ -219,19 +219,10 @@
         align-items: stretch;
       }
       .artifact .cover {
-        border-radius: var(--radius);
-        width: 100%;
-        background: linear-gradient(
-            135deg,
-            color-mix(in oklab, var(--brand) 25%, transparent),
-            color-mix(in oklab, var(--brand-2) 25%, transparent)
-          ),
-          repeating-linear-gradient(
-            45deg,
-            color-mix(in oklab, var(--panel) 85%, transparent) 0 2px,
-            transparent 2px 6px
-          );
+        border-radius: 0.75rem;
         border: 1px solid color-mix(in oklab, var(--panel) 85%, transparent);
+        background: var(--surface);
+        padding: 0.75rem 1rem;
       }
 
       .artifact .cover img {
@@ -567,7 +558,7 @@
             <div class="cover" aria-hidden="true">
               <img
                 src="https://raw.githubusercontent.com/kwinters-snhu/images/main/SWE.png"
-                alt="Original HLA (names removed)"
+                alt="Software Engineering Enhancement Plan"
               />
             </div>
             <details class="discloser">
@@ -755,7 +746,7 @@
             <div class="cover" aria-hidden="true">
               <img
                 src="https://raw.githubusercontent.com/kwinters-snhu/images/main/DSA.png"
-                alt="Initial Design"
+                alt="Database and Algorithms Enhancement Plan"
               />
             </div>
 
@@ -912,7 +903,7 @@
             <div class="cover" aria-hidden="true">
               <img
                 src="https://raw.githubusercontent.com/kwinters-snhu/images/main/DB.png"
-                alt="Initial Design"
+                alt="Database Enhancement Plan"
               />
             </div>
 
