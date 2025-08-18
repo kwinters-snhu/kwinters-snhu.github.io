@@ -273,7 +273,8 @@
         color: var(--muted);
       }
 
-      details.discloser {
+      details.discloser,
+      .sidebar {
         border-radius: 0.75rem;
         border: 1px solid color-mix(in oklab, var(--panel) 85%, transparent);
         background: var(--surface);
@@ -503,10 +504,12 @@
             if not found, or "Updated" if found.
           </p>
         </div>
-        <div class="section-hdr">
+        <div class="outcome-card">
+          <h4>Initial Design</h4>
           <div class="cover" aria-hidden="true">
             <img
               src="https://raw.githubusercontent.com/kwinters-snhu/images/main/Initial.png"
+              alt="Initial Design"
             />
           </div>
         </div>
@@ -524,8 +527,9 @@
 
         <!--SWE Enhancement-->
         <article class="artifact card" aria-labelledby="a1-title">
-          <details class="discloser" open>
-            <summary>Justification</summary>
+          <div class="sidebar card">
+            <h3 id="a1-title">SWE Enhancement</h3>
+            <h4>Justification</h4>
             <div class="content">
               <p>
                 While the AMQP Subscription portion of the code is new, much of
@@ -545,11 +549,10 @@
                 <li>Image: Original HLA (names removed).</li>
               </ul>
             </div>
-          </details>
+          </div>
 
           <div class="body">
             <div>
-              <h3 id="a1-title">SWE Enhancement</h3>
               <div class="kvs" aria-label="Key links">
                 <a
                   href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1"
@@ -574,13 +577,12 @@
                 >
               </div>
             </div>
-
             <div class="cover" aria-hidden="true">
               <img
                 src="https://raw.githubusercontent.com/kwinters-snhu/images/main/SWE.png"
+                alt="Original HLA (names removed)"
               />
             </div>
-
             <details class="discloser">
               <summary>Enhancements Made</summary>
               <div class="content">
@@ -713,10 +715,32 @@
 
         <!--Data Structures and Algorithms Enhancement-->
         <article class="artifact card" aria-labelledby="a1-title">
-          <div class="cover" aria-hidden="true"></div>
+          <div class="sidebar card">
+            <h3 id="a1-title">Data Structures and Algorithms Enhancement</h3>
+            <h4>Justification</h4>
+            <div class="content">
+              <p>
+                The legacy system that some of the business logic and database
+                code was pulled from has a history of concurrency issues and
+                dropped messages. For that reason, I wanted to pay extra close
+                attention to how data is being accessed, stored, and updated or
+                deleted. The barcode lookup and lock, in particular, caused
+                issues when multiple messages were received at the same time and
+                processed at the same time on multiple threads or servers. The
+                need to quickly search for the barcode and handle it
+                concurrently made it a good candiate for the Data Structures and
+                Algorithms enhancement.
+              </p>
+              <ul class="list">
+                <li>C# / .NET 8</li>
+                <li>Algorithm Design</li>
+                <li>Concurrent Processing</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="body">
             <div>
-              <h3 id="a1-title">Data Structures and Algorithms Enhancement</h3>
               <div class="kvs" aria-label="Key links">
                 <a
                   href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement"
@@ -741,29 +765,12 @@
                 >
               </div>
             </div>
-
-            <details class="discloser" open>
-              <summary>Justification</summary>
-              <div class="content">
-                <p>
-                  The legacy system that some of the business logic and database
-                  code was pulled from has a history of concurrency issues and
-                  dropped messages. For that reason, I wanted to pay extra close
-                  attention to how data is being accessed, stored, and updated
-                  or deleted. The barcode lookup and lock, in particular, caused
-                  issues when multiple messages were received at the same time
-                  and processed at the same time on multiple threads or servers.
-                  The need to quickly search for the barcode and handle it
-                  concurrently made it a good candiate for the Data Structures
-                  and Algorithms enhancement.
-                </p>
-                <ul class="list">
-                  <li>C# / .NET 8</li>
-                  <li>Algorithm Design</li>
-                  <li>Concurrent Processing</li>
-                </ul>
-              </div>
-            </details>
+            <div class="cover" aria-hidden="true">
+              <img
+                src="https://raw.githubusercontent.com/kwinters-snhu/images/main/DSA.png"
+                alt="Initial Design"
+              />
+            </div>
 
             <details class="discloser">
               <summary>Enhancements Made</summary>
@@ -841,27 +848,51 @@
 
         <!--Database Enhancement-->
         <article class="artifact card" aria-labelledby="a1-title">
-          <div class="cover" aria-hidden="true"></div>
+          <div class="sidebar card">
+            <h3 id="a1-title">Database Enhancement</h3>
+            <h4>Justification</h4>
+            <div class="content">
+              <p>
+                The service is part of a much larger ecosystem of microservices
+                at my company. It was created a few months ago both for business
+                requirements and as a POC for adoption of new pipeline systems,
+                and I worked with various teams to implement and deploy it via
+                enterprise pipelines using Azure DevOps, Openshift, and ArgoCD.
+                However, the enterprise is now switching to GCP, Cloud Run, and
+                AlloyDB, and because we are planning to use AI solutions to read
+                data, the legacy tables and columns must be renamed to be more
+                readable (this will also help the humans). For that reason, the
+                application must be tweaked for for those platforms, and the
+                database must be rewritten from SQL Server to
+                AlloyDB/PostgreSQL. That made it a perfect candiate for the
+                Database enhancement.
+              </p>
+              <ul class="list">
+                <li>SQL Server / AlloyDB / GCP / Terraform</li>
+                <li>Migrate and Modernize Data</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="body">
             <div>
-              <h3 id="a1-title">Database Enhancement</h3>
               <div class="kvs" aria-label="Key links">
                 <a
-                  href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement"
+                  href="https://github.com/kwinters-snhu/database-old-tables"
                   target="_blank"
                   rel="noopener"
                   aria-label="View source code repository"
                   >Original Database</a
                 >
                 <a
-                  href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement"
+                  href="https://github.com/kwinters-snhu/CS-499-database/tree/initial-state"
                   target="_blank"
                   rel="noopener"
                   aria-label="View source code repository"
                   >Initial Naming Rewrite</a
                 >
                 <a
-                  href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement"
+                  href="https://github.com/kwinters-snhu/CS-499-database/tree/database-enhancement"
                   target="_blank"
                   rel="noopener"
                   aria-label="View source code repository"
@@ -875,7 +906,7 @@
                   >Original Worker</a
                 >
                 <a
-                  href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement"
+                  href="https://github.com/kwinters-snhu/CS-499-worker/tree/database-enhancement"
                   target="_blank"
                   rel="noopener"
                   aria-label="View source code repository"
@@ -891,30 +922,12 @@
               </div>
             </div>
 
-            <details class="discloser" open>
-              <summary>Justification</summary>
-              <div class="content">
-                <p>
-                  The service is part of a much larger ecosystem of
-                  microservices at my company. It was created a few months ago
-                  both for business requirements and as a POC for adoption of
-                  new pipeline systems, and I worked with various teams to
-                  implement and deploy it via enterprise pipelines using Azure
-                  DevOps, Openshift, and ArgoCD. However, the enterprise is now
-                  switching to GCP, Cloud Run, and AlloyDB, and because we are
-                  planning to use AI solutions to read data, the legacy tables
-                  and columns must be renamed to be more readable (this will
-                  also help the humans). For that reason, the application must
-                  be tweaked for for those platforms, and the database must be
-                  rewritten from SQL Server to AlloyDB/PostgreSQL. That made it
-                  a perfect candiate for the Database enhancement.
-                </p>
-                <ul class="list">
-                  <li>SQL Server / AlloyDB / GCP / Terraform</li>
-                  <li>Migrate and Modernize Data</li>
-                </ul>
-              </div>
-            </details>
+            <div class="cover" aria-hidden="true">
+              <img
+                src="https://raw.githubusercontent.com/kwinters-snhu/images/main/DB.png"
+                alt="Initial Design"
+              />
+            </div>
 
             <details class="discloser">
               <summary>Enhancements Made</summary>
