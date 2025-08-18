@@ -132,8 +132,8 @@
         <span>*</span>
       </div>
       <div class="links">
+        <a class="btn" href="#assessment">Self Assessment</a>
         <a class="btn" href="#artifacts">Artifacts</a>
-        <a class="btn" href="#outcomes">Outcomes</a>
         <a class="btn" href="#about">About</a>
       </div>
     </div>
@@ -143,8 +143,8 @@
         <section class="hero" id="intro">
           <div class="hero-inner">
             <div class="card">
-              <span class="eyebrow">SNHU Capstone Portfolio</span>
-              <h1 class="title">Hi, I'm a software engineer focused on building reliable, testable systems.</h1>
+              <span class="eyebrow">Kira Winters</span>
+              <h1 class="title">SNHU Capstone Portfolio</h1>
               <p class="subtitle">This portfolio presents my capstone project and related artifacts. Each section links to source code and demo video, explains enhancements, provides usage/testing instructions, and maps improvements to course outcomes.</p>
               <div class="meta">
                 <span class="badge" title="Primary languages">C# • SQL</span>
@@ -155,11 +155,64 @@
             <div class="card" aria-label="Quick facts">
               <strong>Quick Links</strong>
               <ul class="list">
+                <li><a href="#assessment">Self Assessment</a></li>
                 <li><a href="#artifacts">Jump to Artifacts</a></li>
-                <li><a href="#outcomes">Course Outcomes Mapping</a></li>
                 <li><a href="#about">About Me</a></li>
               </ul>
               <p class="subtitle" style="margin-top:.75rem">Last updated: <span id="lastUpdated">8/17/2025</span></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SELF ASSESSMENT -->
+        <section id="assessment">
+          <div class="section-hdr">
+            <h2>Self Assessment</h2>
+            <p>The work below showcases my strengths, goals, and values, and meets each of the criteria for our capstone course.  My software engineering values are 
+              testability, reusability, team/org collaboration and standards, user focus, tracer bullet development, and agility in a fast-paced, rapidly changing environment.
+            </p>
+          </div>
+          <div class="outcomes">
+            <div class="outcome-card">
+              <h4>Outcome: Collaborating in a Team Environment</h4>
+              <p>Throughout the course, I worked with our AMQ broker team to configure and test our topic subscriptions as needed.  This was necessary as we weren't permitted 
+                to download our own broker software.  I also worked with our data design team to review/define new database naming standards of old tables/columns with very 
+                difficult to read names.  In addition, I am continuing to work with architects, our manager, and our enterprise platform engineering team to design, budget, 
+                plan, and implement new infrastructure.  Lastly, a staggering number of requests and forms have been required.  To facilitate collaboration, whenever I requested 
+                access or resources for anything, I made sure to request it for the whole team, and actively shared discoveries during our tech review calls.
+              </p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome: Communicating with Stakeholders</h4>
+              <p>Througout the development process, I have maintained a OneNote that our team shares, documenting all discovered requirements, processes, and 
+                team decisions.  I created an unofficial HLA to help onboard our architect, activity diagrams to use in discussions, and spreadsheet to help define data.
+                For the course, I created several videos and written documents describing the artifacts and how to use/test them, and a polished github pages portfolio.
+              </p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome: Data Structures and Algorithms</h4>
+              <p>I created an in-memory cache for a frequently repeated lookup, and implemented a binary search lookup and ConcurrentDictionary lookup version, which 
+                  was easy to test and swap out depending on which was the better performing lookup.</p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome: Software Engineering and Database</h4>
+              <p>For each enhancement, I iteratively expanded the included business logic/functionality, cleaned up legacy code, and refactored for clean code and org standards.
+                I also began moving infrastructure from Openshift to GCP (in progress) - a feat which I was hoping to complete before the end of the course, but which I knew 
+                would be dependent on external teams and unknown processes.  Loggingm, error handling, and unit tests were often absent in legacy code, so I improved both in this 
+                iteration.  Other legacy issues involved concurrency bugs, and I designed with that history in mind, creating unit tests to prevent regressions as more functionality is added.
+                I rewrote a SQL Server schema, stored procedures, and legacy data access code for AlloyDB/PostgreSQL, improved the consistency of data access code, and 
+                revised schema names to be human readable.
+              </p>
+            </div>
+            <div class="outcome-card">
+              <h4>Outcome: Security Mindset</h4>
+              <p> 
+                I added xml schema and domain validation for inputs, designed infrastructure to include redundancy and DR planning, AlloyDB auth proxy, VPN, and service 
+                accounts/role restrictions.  At a previous team/company, I served as a "security advocate" (responsible for integrating security scans into our pipelines, 
+                tracking and mitigating security defects, flagging false results, taking extra security training, etc), so I am aware of how important these scans are and 
+                have been prioritizing getting the quality and security scans working in our CI pipelines.  This has been an ongoing process as our pipeline team works through 
+                issues.
+              </p>
             </div>
           </div>
         </section>
@@ -167,10 +220,15 @@
         <!-- ARTIFACT -->
         <section id="artifacts">
           <div class="section-hdr">
-            <h2>Worker Artifact</h2>
+            <h2>Artifact Summary</h2>
               <p>CS-499-worker is a .NET 8.0 worker service that uses AMQPNetLite to subscribe to multiple AMQ topics from a message broker.  
                 It processes the messages, extracts a few entities, and adds them to tables in the "SMAT" database (CS-499-database).  
                 It also checks the message barcode in the database and inserts the entities with "New" status if not found, or "Updated" if found.</p>
+          </div>
+          <div class="section-hdr">
+            <h2>Code Review</h2>
+            <p>Our first milestone for the course was to create a video code review of the artifacts and planned enhancement.  
+              <a href="https://snhu-my.sharepoint.com/:f:/g/personal/kira_winters_snhu_edu/Epr9Ja00gmNJoukzkblj6CEBCDNWnZJ9zLHGABE2Nst3xA?email=f.bermudez%40snhu.edu&e=Nrwkwh">Ctrl+Click here to view</a>.</p>
           </div>
 
           <!--SWE Enhancement-->  
@@ -194,7 +252,8 @@
                 once that concept was proven.  This made it a great candidate for the Software Engineering enhancement.</p>
                   <ul class="list">
                     <li>C# / .NET 8 / AMQPNetLite</li>
-                    <li>Image: Original HLA (names removed)</li>
+                    <li>Improve business logic, validation, security, and clean up messy code.</li>
+                    <li>Image: Original HLA (names removed).</li>
                   </ul>
                 </div>
               </details>
@@ -203,15 +262,15 @@
                 <summary>Enhancements Made</summary>
                 <div class="content">
                   <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
-                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
-                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP.  Infrastructure changes will be attempted, 
+                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging (additional improvements
+                      were added in later enhancements, as well), and learned how to use Docker to push the image to GCP.  Infrastructure changes were started, 
                       but due to organizational processes, this effort will likely be ongoing after the class and may not be included in this iteration.</p>
                   <h5>Code Enhancements</h5>
                   <ul class="list">
                     <li>Enhancement 1: Add logging and error handling example.</li>
                     <li>Enhancement 2: Begin adding missing business logic, unit tests, and metrics.</li>
                     <li>Enhancement 3: Refactor code into clean, reusable, and testable components.  Rename items per organization standards.</li>
-                    <li>Enhancement 4: Add validation of inbound messages to improve security, and mitigate security issues if found in scan.</li>
+                    <li>Enhancement 4: Add schema validation of inbound messages to improve security, and mitigate security issues if found in scan.</li>
                     <li>Enhancement 5: Work with AMQ Team to determine how to reprocess in the event of message loss.  (Found that they do not reprocess.  The vendor resends the message.)</li>
                   </ul>
                   <h5>Infrastructure (WIP/Nice to Have)</h5>
@@ -241,13 +300,12 @@
               <details class="discloser">
                 <summary>Skills & Course Outcomes Demonstrated</summary>
                 <div class="content">
-                  <p>Map enhancements to learning outcomes and skills.</p>
                   <ul class="list">
                     <li><strong>Collaboration:</strong> This enhancement required collaboration with the AMQ Broker team to provide schemas, 
                     integration tests, and planning for message handling and protocol for issues.  The ongoing design and implementation 
                     of the application and infrastructure required collaboration with our architects, enterprise engineering team, and 
                     GCP sandbox/terraform repo management teams.</li>
-                    <li><strong>Communication:</strong> I created the HLA and additional documentation to serve as foundations for discussion 
+                    <li><strong>Communication:</strong> I created the original HLA and additional documentation to serve as foundations for discussion 
                     and planning with the team.  I meticulously documented all of our processes, discussions, architecture, and how-tos in a 
                     shared OneNote so that anyone who does not have experience can take over at any time.  I also improved commenting and documentation 
                     within the code itself.</li>
@@ -270,8 +328,8 @@
               <div>
                 <h3 id="a1-title">Data Structures and Algorithms Enhancement</h3>
                 <div class="kvs" aria-label="Key links">
-                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
-                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/algorithms-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
                   <a href="VIDEO_LINK" target="_blank" rel="noopener" aria-label="Open live demo or release">Video Demo</a>
                 </div>
               </div>
@@ -284,9 +342,9 @@
                 particular, caused issues when multiple messages were received at the same time and processed at the same time on multiple threads or servers.  The 
                 need to quickly search for the barcode and handle it concurrently made it a good candiate for the Data Structures and Algorithms enhancement.</p>
                   <ul class="list">
-                    <li>C# / .NET 8 / AMQPNetLite</li>
-                    <li>High-level architecture</li>
-                    <li>Notable constraints or trade‑offs</li>
+                    <li>C# / .NET 8 </li>
+                    <li>Algorithm Design</li>
+                    <li>Concurrent Processing</li>
                   </ul>
                 </div>
               </details>
@@ -294,14 +352,15 @@
               <details class="discloser">
                 <summary>Enhancements Made</summary>
                 <div class="content">
-                  <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
-                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
-                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP..</p>
+                  <p>In this enhancement, I implemented an in-memory cache for storage of frequent barcode lookups, and created two versions of a barcode lookup algorithm 
+                    and/or data structure.  The first was a binary search algorithm, and the second made use of the ConcurrentDictionary data structure.  I then created unit 
+                    tests to compare the performance of each lookup.
+                  </p>
                   <ul class="list">
-                    <li>Performance: e.g., added binary search cache to reduce lookup time</li>
-                    <li>Reliability: e.g., idempotent message handling + advisory locks</li>
-                    <li>Security: e.g., parameterized queries + least privilege</li>
-                    <li>DevOps: e.g., CI pipeline with unit/integration test stages</li>
+                    <li>Enhancement 1: Add in-memory cache.</li>
+                    <li>Enhancement 2: Add barcode lookup service, binary search version, and ConcurrentDictionary version.</li>
+                    <li>Enhancement 3: Add unit test to compare lookup time.</li>
+                    <li>Enhancement 4: Continue adding additional business logic and logging improvements.</li>
                   </ul>
                 </div>
               </details>
@@ -311,11 +370,11 @@
                 <div class="content">
                   <p>Clear, reproducible instructions for reviewers.</p>
                   <ol class="list">
-                    <li>Clone repo and set environment variables (see README).</li>
-                    <li>Run database migrations; seed sample data.</li>
-                    <li>Start services locally (e.g., <code>docker compose up</code>).</li>
-                    <li>Open <code>http://localhost:PORT</code>; sign in with test credentials.</li>
-                    <li>Run tests: <code>dotnet test</code> / <code>npm test</code> (include coverage thresholds).</li>
+                    <li>Clone the repository.  <code>git clone https://github.com/kwinters-snhu/CS-499-worker.git</code></li>
+                    <li>Open in Visual Studio.  Tests and test data are in the smat-integration-unittests.Test project.</li>
+                    <li>Checkout algorithms-enhancement or later branch.  <code>git checkout algorithms-enhancement</code></li>
+                    <li>Navigate to View > Test Explorer, and click on the green arrow to run the BarcodeServiceTests and view 
+                      processing times in the Output window.</li>
                   </ol>
                 </div>
               </details>
@@ -323,13 +382,10 @@
               <details class="discloser">
                 <summary>Skills & Course Outcomes Demonstrated</summary>
                 <div class="content">
-                  <p>Map enhancements to learning outcomes and skills.</p>
                   <ul class="list">
-                    <li><strong>Collaboration:</strong> Description</li>
-                    <li><strong>Communication:</strong> Description</li>
-                    <li><strong>Design and Algorithms:</strong> Description</li>
-                    <li><strong>Innovation:</strong> Description</li>
-                    <li><strong>Security Mindset:</strong> Description</li>
+                    <li><strong>Design and Algorithms:</strong> I created a binary search algorithm and ConcurrentDictionary version of a barcode 
+                    lookup service, and an in-memory cache to reduce frequency of database lookups.  I designed the components in a way to easily isolate 
+                    and test the services, and swap them out depending on the results.  I also created a test to verify concurrent processing.</li>
                   </ul>
                 </div>
               </details>
@@ -341,10 +397,13 @@
             <div class="cover" aria-hidden="true"></div>
             <div class="body">
               <div>
-                <h3 id="a1-title">Data Structures and Algorithms Enhancement</h3>
+                <h3 id="a1-title">Database Enhancement</h3>
                 <div class="kvs" aria-label="Key links">
-                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/milestone-1" target="_blank" rel="noopener" aria-label="View source code repository">Original Artifact</a>
-                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Artifact</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Original Database</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Initial Naming Rewrite</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">AlloyDB Rewrite</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/algorithms-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Original Worker</a>
+                  <a href="https://github.com/kwinters-snhu/CS-499-worker/tree/swe-enhancement" target="_blank" rel="noopener" aria-label="View source code repository">Enhanced Worker</a>
                   <a href="VIDEO_LINK" target="_blank" rel="noopener" aria-label="Open live demo or release">Video Demo</a>
                 </div>
               </div>
@@ -354,13 +413,13 @@
                 <div class="content">
                   <p>The service is part of a much larger ecosystem of microservices at my company.  It was created a few months ago both for business requirements
                 and as a POC for adoption of new pipeline systems, and I worked with various teams to implement and deploy it via enterprise pipelines using
-                Azure DevOps, Openshift, and ArgoCD.  However, the enterprise is now switching to GCP, Cloud Run, and AlloyDB.  For that reason, the application 
+                Azure DevOps, Openshift, and ArgoCD.  However, the enterprise is now switching to GCP, Cloud Run, and AlloyDB, and because we are planning to use AI 
+                solutions to read data, the legacy tables and columns must be renamed to be more readable (this will also help the humans).  For that reason, the application 
                 must be tweaked for for those platforms, and the database must be rewritten from SQL Server to AlloyDB/PostgreSQL.  That made it a perfect candiate
                 for the Database enhancement.</p>
                   <ul class="list">
-                    <li>C# / .NET 8 / AMQPNetLite</li>
-                    <li>High-level architecture</li>
-                    <li>Notable constraints or trade‑offs</li>
+                    <li>SQL Server / AlloyDB / GCP / Terraform</li>
+                    <li>Migrate and Modernize Data</li>
                   </ul>
                 </div>
               </details>
@@ -368,14 +427,22 @@
               <details class="discloser">
                 <summary>Enhancements Made</summary>
                 <div class="content">
-                  <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
-                      and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
-                      were added in later enhancements, as well, and learned how to use Docker to push the image to GCP..</p>
+                  <p>For this enhancement, I had to learn about AlloyDB, GCP, Terraform, and PostgreSQL, as my prior experience was mostly with SQL Server.  I worked with 
+                    our database design teams to understand the meaning of the table and column abbreviations and adopt/define new standards for naming, and rewrote the 
+                    tables, columns, and stored procedures for AlloyDB/PostgreSQL.  I updated the Data Access layer in the worker service so that it uses the correct 
+                    libraries, and improved the legacy code to be async and consistent in format.  I began setting up the clusters, instances, databases, networking, service 
+                    accounts, etc, as well.  Infrastructure work has required outreach/dependency on external teams, and as a result is still in progress.
+                  </p>
+                  <h5>Complete</h5>
                   <ul class="list">
-                    <li>Performance: e.g., added binary search cache to reduce lookup time</li>
-                    <li>Reliability: e.g., idempotent message handling + advisory locks</li>
-                    <li>Security: e.g., parameterized queries + least privilege</li>
-                    <li>DevOps: e.g., CI pipeline with unit/integration test stages</li>
+                    <li>Enhancement 1: Redefine table and column names.</li>
+                    <li>Enhancement 2: Rewrite schema and stored procedures.</li>
+                    <li>Enhancement 3: Update data access layer.</li>
+                  </ul>
+                  <h5>In Progress</h5>
+                  <ul class="list">
+                    <li>Enhancement 3: Build sandbox clusters, instances, service accounts, networking.</li>
+                    <li>Enhancement 4: Set up AlloyDB Auth Proxy and VPN tunnel to create local integration tests.</li>
                   </ul>
                 </div>
               </details>
@@ -383,14 +450,8 @@
               <details class="discloser">
                 <summary>How to Use & Test</summary>
                 <div class="content">
-                  <p>Clear, reproducible instructions for reviewers.</p>
-                  <ol class="list">
-                    <li>Clone repo and set environment variables (see README).</li>
-                    <li>Run database migrations; seed sample data.</li>
-                    <li>Start services locally (e.g., <code>docker compose up</code>).</li>
-                    <li>Open <code>http://localhost:PORT</code>; sign in with test credentials.</li>
-                    <li>Run tests: <code>dotnet test</code> / <code>npm test</code> (include coverage thresholds).</li>
-                  </ol>
+                  <p>Testing the application will require an authorized gcloud account and AlloyDB auth proxy + VPN setup.  For the current iteration, code can be inspected 
+                    visually at the above links.</p>
                 </div>
               </details>
         
@@ -399,11 +460,19 @@
                 <div class="content">
                   <p>Map enhancements to learning outcomes and skills.</p>
                   <ul class="list">
-                    <li><strong>Collaboration:</strong> Description</li>
-                    <li><strong>Communication:</strong> Description</li>
-                    <li><strong>Design and Algorithms:</strong> Description</li>
-                    <li><strong>Innovation:</strong> Description</li>
-                    <li><strong>Security Mindset:</strong> Description</li>
+                    <li><strong>Collaboration:</strong> This enahncement required collaboration with our enterprise data design team to ensure that our changes are 
+                    consistent with organziational standards.  It also required heavy collaboration with our architect and enterprise engineering team to work out 
+                    access, permissions, procedures, budgeting, and cloud resource allocation.  I have shared knowledge that I learned while deploying builds to GCP 
+                    with teams that are struggling with that, and a team that focused on database first has been working with me on setting up a local connection.</li>
+                    <li><strong>Communication:</strong> I created a spreadsheet with our old table and column definitions and an updated version to use in meetings with 
+                    our team and the database design team.</li>
+                    <li><strong>Design and Algorithms:</strong> I improved the database code to standardize it, make it easy to swap out, and ensure it is async.  While 
+                    working about this, I learned about the PostgreSQL advisory lock, and plan to use it to implement the barcode locking mechanism.  The existing unit tests 
+                    will help me verify that no concurrency regressions occur as we continue to build out the remaining business logic.</li>
+                    <li><strong>Innovation: </strong> We are designing our database to be compatible with planned AI initiatives, and creating new processes for GCP/AlloyDB.</li>
+                    <li><strong>Security Mindset: </strong> Creating service accounts, permissions, and working out details around the auth proxy and tunneling, shows that 
+                    we are prioritizing security, even for our sandbox POC solutions.  We are including multiple instances and load balancing in our infrastructure, as well, to 
+                    ensure we can support scalability and disaster recovery plans.</li>
                   </ul>
                 </div>
               </details>
@@ -411,72 +480,33 @@
           </article>
         </section>
         
-        <!-- OUTCOMES MAPPING -->
-        <!--section id="outcomes">
-          <div class="section-hdr">
-            <h2>Course Outcomes Mapping</h2>
-            <p>How the work above aligns to program and course outcomes.</p>
-          </div>
-          <div class="outcomes">
-            <div class="outcome-card">
-              <h4>Outcome A — Software Engineering Practice</h4>
-              <p>Evidence: Artifact 1 (testing & CI), Artifact 2 (design patterns), Artifact 3 (code reviews).</p>
-            </div>
-            <div class="outcome-card">
-              <h4>Outcome B — Databases</h4>
-              <p>Evidence: Artifact 1 (schema + migrations), Artifact 2 (transactional messaging), Artifact 4 (query optimization).</p>
-            </div>
-            <div class="outcome-card">
-              <h4>Outcome C — Data Structures & Algorithms</h4>
-              <p>Evidence: Artifact 2 (binary search cache), Artifact 5 (graph traversal), performance benchmarking.</p>
-            </div>
-            <div class="outcome-card">
-              <h4>Outcome D — Security & Ethics</h4>
-              <p>Evidence: secret management, least-privilege roles, secure coding practices.</p>
-            </div>
-          </div>
-    </section-->
+
         
         <!-- ABOUT -->
-        <!--section id="about">
+        <section id="about">
           <div class="section-hdr">
             <h2>About Me</h2>
-            <p>A brief professional bio and contact information.</p>
+            <p>I am a software engineer (3+ years) who has also worked as a freelance web/graphic designer, and business analyst in healthcare IT.  My hobbies include 
+              visual art, writing, game design, and martial arts.
+            </p>
           </div>
           <div class="card">
-            <p>Replace this with a short bio. Focus on what you build, how you work, and your interests. Add a link to your résumé, LinkedIn, and GitHub.</p>
+            <p>My passion is building applications from the ground up to be well-designed and testable.  I plan to use the remaining courses of this program to learn 
+              to develop geospatial applications.  Beyond this program, I want to expand into AR/VR, but with the rate of change in technology, I can't wait 
+              to see what other opportunities present themselves.</p>
             <ul class="list">
-              <li>Location: City, State</li>
-              <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
-              <li>GitHub: <a href="https://github.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></li>
-              <li>LinkedIn: <a href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">/in/your-handle</a></li>
+              <!--li>Location: </li-->
+              <li>Email: <a href="mailto:kira.winters@snhu.com">kira.winters@snhu.com</a></li>
+              <li>GitHub: <a href="https://github.com/kwinters-snhu" target="_blank" rel="noopener">@kwinters-snhu</a></li>
+              <!--li>LinkedIn: <a href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">/in/your-handle</a></li-->
             </ul>
           </div>
         </section>
         
         <footer>
           <hr style="border:none; height:1px; background: color-mix(in oklab, var(--panel) 85%, transparent);">
-          <p>© <span id="year"></span> YOUR NAME. Built for capstone review. Hosted on GitHub Pages.</p>
+          <p>© <span id="year">2025</span> Kira Winters. Built for capstone review. Hosted on GitHub Pages.</p>
         </footer>
     </main>
-
-    <h1><a href="https://snhu-my.sharepoint.com/:f:/g/personal/kira_winters_snhu_edu/Epr9Ja00gmNJoukzkblj6CEBCDNWnZJ9zLHGABE2Nst3xA?email=f.bermudez%40snhu.edu&e=Nrwkwh">Code Review</a></h1>
-    <p>Ctrl+Click to view.</p>
-
-    <p>In this enhancement, I have refactored the code and added services to connect frontend and backend.  I added security and performance fixes, 
-    and unit tests to verify logic.  I added schema validation, business logic validation, error handling, and logging.  Additional improvements
-    were added in later enhancements, as well, and learned how to use Docker to push the image to GCP.</p>
-    <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/algorithms-enhancement">Algorithms Enhancement</a></h3>
-    <p>In this enhancement, I added a cache to store the barcodes of inbound messages, since many messages can be received with the same barcode.
-    I added two implementations, one with a binary search, and one with concurrent dictionary, and a unit test to measure the performance of both
-    and verify no issues with concurrent processing.  I also continued improving the code with consistent linting and quality approaches, added 
-    a bit more business logic, and started thinking through and preparing for some of the concurrency issues that may happen when more of the 
-    required logic is added.</p>
-    <h3><a href="https://github.com/kwinters-snhu/CS-499-worker/tree/database-enhancement">Database Enhancement</a></h3>
-
-    <h2>CS-499-Database (smat-database)</h2>
-    <h3><a href="https://github.com/kwinters-snhu/database-old-tables">Legacy Tables</a></h3>
-    <h3><a href="https://github.com/kwinters-snhu/CS-499-database/tree/initial-state">Legacy SPs + New Table/Column Names</a></h3>
-    <h3><a href="https://github.com/kwinters-snhu/CS-499-database/tree/database-enhancement">Database Enhancement</a></h3-->
 </body>
 </html>
